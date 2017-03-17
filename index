@@ -1,0 +1,194 @@
+  
+  
+  <!-- ANKETA POPUP -->
+  <div id="form_wrap" class="form_wrap mfp-hide small_form">
+    <div class="form_wrap_inner">
+      <h4>Получить кредит</h4>
+      <form id="step1" class="form">
+        <div class="input">
+          <input data-require="" name="FORM[Сумма]" autocomplete="off" autocorrect="off" autocapitalize="sentences" class="summ_money"><span>Сумма</span>
+        </div>
+        <div class="input">
+          <input data-require="" name="FORM[Доход]" autocomplete="off" autocorrect="off" autocapitalize="sentences" class="income"><span>Доход</span>
+        </div>
+        <div class="input">
+          <input data-require="" name="FORM[ДР]" autocomplete="off" autocorrect="off" autocapitalize="sentences" class="dateBirth"><span>Дата рождения</span>
+        </div>
+        <!--.input-->
+        <!--  input.time(type='text', name='FORM[Пожелание_клиента]', autocomplete="off" autocorrect="off" autocapitalize="sentences")-->
+        <!--  span Удобное время звонка-->
+        <select data-require="" name="FORM[Адрес]" class="select_region">
+          <option value="" disabled selected>регион</option>
+          <option value="Москва">Москва и М.О.</option>
+          <option value="Санкт-Петербург">Санкт-Петербург и Л.О.</option>
+          <option value="другой">Другой регион</option>
+        </select>
+        <div class="input">
+          <input data-require="" name="FORM[Телефон_мобильный]" autocomplete="off" autocorrect="off" autocapitalize="sentences" placeholder="8 (" class="phone"><span class="static active">Телефон</span>
+        </div>
+        <input type="hidden" name="FORM[Цель кредита]" value="нет">
+        <input type="hidden" name="FORM[Приоритет]" value="нет">
+        <input type="hidden" name="FORM[Фамилия]" value="нет">
+        <input type="hidden" name="FORM[Прежняя_фамилия]" value="нет">
+        <input type="hidden" name="FORM[Имя]" value="нет">
+        <input type="hidden" name="FORM[Гражданство]" value="нет">
+        <input type="hidden" name="FORM[Отчество]" value="нет">
+        <input type="hidden" name="FORM[Адрес_город]" value="нет">
+        <input type="hidden" name="FORM[e-mail]" value="нет">
+        <input type="hidden" name="FORM_NAME" value="Анкета_мини">
+        <input type="hidden" name="SPAM">
+        <input type="hidden" name="UTF8" value="yes">
+        <input type="hidden" name="FORM[Подтип_анкеты]" value="Главная">
+        <input type="checkbox" name="agree" checked style="visibility: height: 0; opacity: 0">
+        <div class="submit cta">Получить кредит</div>
+        <div class="invalid_text">Пожалуйста, заполните все поля, подсвеченные красным.</div>
+
+      </form>
+    </div>
+  </div>
+  <div id="step2" class="form_wrap big mfp-hide">
+    <iframe src="like_filkos/anketa_mini_step2.shtml" width="100%" id="anketa_iframe_step2" class="anketa_iframe"></iframe>
+  </div>
+  <div id="step3" class="form_wrap big mfp-hide">
+    <iframe src="like_filkos/anketa_mini_step3.shtml" width="100%" id="anketa_iframe_step3" class="anketa_iframe"></iframe>
+  </div>
+  
+  
+  
+  
+  <!-- SCRIPTS -->
+    <script>
+    
+    // YANDEX METRICA FUNCTIONS 
+     function yandexGoal(goal) {
+      if (yaCounter42672999.reachGoal(goal)) console.log('yandex reached');
+    }
+    
+    // Prepare flags and functions
+    var summ ='',
+        income = '',
+        dateBirth = '',
+        region = '',
+        phone = '',
+        sirname = "",
+        name = "",
+        lastName = '',
+        clientHistory = '',
+        education = '',
+        property = '',
+        zagran = '',
+        work = '',
+        incomeType = '',
+        stazh = '',
+        email = '',
+        nationality = '';
+
+
+
+    var step2 = false, // if step2 is submitted
+        step3 = false, // if step3 id submitted
+        formSent = false, // if form data is sent when user closes popup
+        step2Sent = false, // for send statistics from iframe step3,
+        form_data_step2 = false;
+
+
+
+    var step1Sent = false,
+      step3Sent = false,// if step2 id submitted,
+      onCloseSent = false,
+      form_data = '',
+      formSent = false,// if form data is sent when user closes popup
+      step2Sent = false,// if step1 is submitted
+      openStep3 = function (form_data) {
+      $.magnificPopup.instance.st.callbacks = {
+        close: function () {
+
+
+          console.log('form data: ' + form_data.length + ' ' + "step2sent " + step2Sent);
+          var base_url_link = window.location.origin;
+          if (form_data && !step2Sent && !step3Sent) {
+
+            $.ajax({
+              type: 'POST',
+              url: base_url_link + '/like_filkos/send_form.php',
+              data: form_data
+            }).done(function (data) {
+
+              // CRM GOALS and YANDEX goals
+              if (data.indexOf('специалисты') != -1) {
+                console.log('sent');
+
+
+                reach_goal(region);
+                yandexGoal("ANKETA");
+
+
+              }
+            });
+
+            if (!step2Sent && !step3Sent) {
+              var base_url_link = window.location.origin;
+              $.ajax({
+                type: 'get',
+                url: base_url_link + '/write_statistics.php',
+                data: {"goal" : "шаг 2"}
+              }).done(function () {
+                console.log('statistic written');
+              });
+
+            }
+            step2Sent = true;
+            console.log(step2Sent);
+
+          }
+
+
+        }
+      };
+      var step3 = $('#step3');
+      $.magnificPopup.open({
+        items: {
+          src: step3,
+          type: 'inline'
+        },
+        closeBtnInside: 'true'
+
+
+      })
+    };
+    function reach_goal(name) {
+      var message = "отправить " + name,
+        base_url_link = window.location.origin;
+      $.ajax({
+        type: 'get',
+        url: base_url_link + '/write_statistics.php',
+        data: {"goal" : message}
+      }).done(function () {
+        console.log('statistic written');
+      });
+    };
+   
+    function sendStatisticsFromIframe(){
+      var base_url_link = window.location.origin;
+        var message = "отправить " + region;
+            $.ajax({
+              type: 'get',
+              url: base_url_link + '/write_statistics.php',
+              data: {"goal" : message}
+            }).done(function(){
+              console.log('statistic written');
+            }).done(function(){
+              $.ajax({
+                type: 'get',
+                url: base_url_link + '/write_statistics.php',
+                data: {"goal" : "шаг 3"}
+              }).done(function(){
+                console.log('statistic written');
+              });
+            });
+    }
+  
+    (function () {
+    
+      jQuery('.anketa_iframe').iFrameResize();
+    })();
