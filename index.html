@@ -1,57 +1,58 @@
   
   
-  <!-- ANKETA POPUP -->
-  <div id="form_wrap" class="form_wrap mfp-hide small_form">
-    <div class="form_wrap_inner">
-      <h4>Получить кредит</h4>
-      <form id="step1" class="form">
-        <div class="input">
-          <input data-require="" name="FORM[Сумма]" autocomplete="off" autocorrect="off" autocapitalize="sentences" class="summ_money"><span>Сумма</span>
-        </div>
-        <div class="input">
-          <input data-require="" name="FORM[Доход]" autocomplete="off" autocorrect="off" autocapitalize="sentences" class="income"><span>Доход</span>
-        </div>
-        <div class="input">
-          <input data-require="" name="FORM[ДР]" autocomplete="off" autocorrect="off" autocapitalize="sentences" class="dateBirth"><span>Дата рождения</span>
-        </div>
-        <!--.input-->
-        <!--  input.time(type='text', name='FORM[Пожелание_клиента]', autocomplete="off" autocorrect="off" autocapitalize="sentences")-->
-        <!--  span Удобное время звонка-->
-        <select data-require="" name="FORM[Адрес]" class="select_region">
-          <option value="" disabled selected>регион</option>
-          <option value="Москва">Москва и М.О.</option>
-          <option value="Санкт-Петербург">Санкт-Петербург и Л.О.</option>
-          <option value="другой">Другой регион</option>
-        </select>
-        <div class="input">
-          <input data-require="" name="FORM[Телефон_мобильный]" autocomplete="off" autocorrect="off" autocapitalize="sentences" placeholder="8 (" class="phone"><span class="static active">Телефон</span>
-        </div>
-        <input type="hidden" name="FORM[Цель кредита]" value="нет">
-        <input type="hidden" name="FORM[Приоритет]" value="нет">
-        <input type="hidden" name="FORM[Фамилия]" value="нет">
-        <input type="hidden" name="FORM[Прежняя_фамилия]" value="нет">
-        <input type="hidden" name="FORM[Имя]" value="нет">
-        <input type="hidden" name="FORM[Гражданство]" value="нет">
-        <input type="hidden" name="FORM[Отчество]" value="нет">
-        <input type="hidden" name="FORM[Адрес_город]" value="нет">
-        <input type="hidden" name="FORM[e-mail]" value="нет">
-        <input type="hidden" name="FORM_NAME" value="Анкета_мини">
-        <input type="hidden" name="SPAM">
-        <input type="hidden" name="UTF8" value="yes">
-        <input type="hidden" name="FORM[Подтип_анкеты]" value="Главная">
-        <input type="checkbox" name="agree" checked style="visibility: height: 0; opacity: 0">
-        <div class="submit cta">Получить кредит</div>
-        <div class="invalid_text">Пожалуйста, заполните все поля, подсвеченные красным.</div>
+     <!-- ANKETA POPUP -->
+    <div id="form_wrap" class="form_wrap mfp-hide small_form">
+        <div class="form_wrap_inner">
+            <h4>Получить кредит</h4>
+            <form id="step1" class="new_form">
+                <div class="input">
+                    <input data-require="" name="FORM[Сумма]" autocomplete="off" autocorrect="off" autocapitalize="sentences" class="summ_money"><span>Сумма</span>
+                </div>
+                <div class="input">
+                    <input data-require="" name="FORM[Доход]" autocomplete="off" autocorrect="off" autocapitalize="sentences" class="income"><span>Доход</span>
+                </div>
+                <div class="input">
+                    <input data-require="" name="FORM[ДР]" autocomplete="off" autocorrect="off" autocapitalize="sentences" class="dateBirth"><span>Дата рождения</span>
+                </div>
+                <!--.input-->
+                <!--  input.time(type='text', name='FORM[Пожелание_клиента]', autocomplete="off" autocorrect="off" autocapitalize="sentences")-->
+                <!--  span Удобное время звонка-->
+                <select data-require="" name="FORM[Адрес]" class="select_region">
+                    <option value="" disabled selected>регион</option>
+                    <option value="Москва">Москва и М.О.</option>
+                    <option value="Санкт-Петербург">Санкт-Петербург и Л.О.</option>
+                    <option value="другой">Другой регион</option>
+                </select>
+                <div class="input">
+                    <input data-require="" name="FORM[Телефон_мобильный]" autocomplete="off" autocorrect="off" autocapitalize="sentences" placeholder="8 (" class="phone"><span class="static active">Телефон</span>
+                </div>
+                <input type="hidden" name="FORM[Цель кредита]" value="нет">
+                <input type="hidden" name="FORM[Приоритет]" value="нет">
+                <input type="hidden" name="FORM[Фамилия]" value="нет">
+                <input type="hidden" name="FORM[Прежняя_фамилия]" value="нет">
+                <input type="hidden" name="FORM[Имя]" value="нет">
+                <input type="hidden" name="FORM[Гражданство]" value="нет">
+                <input type="hidden" name="FORM[Отчество]" value="нет">
+                <input type="hidden" name="FORM[Адрес_город]" value="нет">
+                <input type="hidden" name="FORM[e-mail]" value="нет">
+                <input type="hidden" name="FORM_NAME" value="Анкета_мини">
+                <input type="hidden" name="SPAM">
+                <input type="hidden" name="UTF8" value="yes">
+                <input type="hidden" name="FORM[Подтип_анкеты]" value="Главная">
+                <input type="checkbox" name="agree" checked style="visibility: height: 0; opacity: 0">
+                <div class="submit cta">Получить кредит</div>
+                <div class="invalid_text">Пожалуйста, заполните все поля, подсвеченные красным.</div>
 
-      </form>
+            </form>
+        </div>
     </div>
-  </div>
-  <div id="step2" class="form_wrap big mfp-hide">
-    <iframe src="like_filkos/anketa_mini_step2.shtml" width="100%" id="anketa_iframe_step2" class="anketa_iframe"></iframe>
-  </div>
-  <div id="step3" class="form_wrap big mfp-hide">
-    <iframe src="like_filkos/anketa_mini_step3.shtml" width="100%" id="anketa_iframe_step3" class="anketa_iframe"></iframe>
-  </div>
+    <div id="step2" class="form_wrap big mfp-hide">
+        <iframe src="like_filkos/anketa_mini_step2.shtml" width="100%" id="anketa_iframe_step2" class="anketa_iframe"></iframe>
+    </div>
+    <div id="step3" class="form_wrap big mfp-hide">
+        <iframe src="like_filkos/anketa_mini_step3.shtml" width="100%" id="anketa_iframe_step3" class="anketa_iframe"></iframe>
+    </div>
+
   
   
   
