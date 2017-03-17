@@ -8,7 +8,7 @@ SELECT2
 
 
 
-g = $;
+
 
 // YANDEX
  function f(a) {
@@ -171,3 +171,175 @@ g = $;
             
     
     })()
+
+// YANDEX
+function f(a) {
+    yaCounter39205955.reachGoal(a) && console.log("yandex reached")
+}
+
+// REACH GOAL
+function d(a) {
+    var b = window.location.origin;
+    $.ajax({
+        type: "get",
+        url: b + "/write_statistics.php",
+        data: {
+            goal: a
+        }
+    }).done(function() {
+        console.log("statistic written")
+    })
+}
+
+function e(a) {
+    var b = "отправить " + a,
+        c = window.location.origin;
+    $.ajax({
+        type: "get",
+        url: c + "/write_statistics.php",
+        data: {
+            goal: b
+        }
+    }).done(function() {
+        console.log("statistic written")
+    })
+}
+
+
+
+
+
+(function(){
+
+    //SEND DATA TO CRM
+    function a(a) {
+        $.ajax({
+            type: "POST",
+            url: "/like_filkos/send_form.php",
+            data: form_data
+        })
+    }
+
+
+    function c(a, b, c) {
+        var d = new Date,
+            e = d.getFullYear(),
+            f = d.getMonth(),
+            g = d.getDate(),
+            h = e - c;
+        return f < a - 1 && h--, a - 1 == f && g < b && h--, h
+    }
+    //MAKE  ANKETA ON MOBILE SMALL ONLY
+    $(window).width() < 480 && $("form").addClass("small"),
+
+
+        // EVENTS ON EAVING SITE
+        $(window).on("beforeunload", function() {
+            if (form_data && !step1Sent && !step2Sent && !step3Sent && !onCloseSent) return a(form_data), region && e(region), onCloseSent = !0, "Возможно некоторые данные не сохранятся."
+        }), $(window).on("unload", function() {
+        if (form_data && !step1Sent && !step2Sent && !step3Sent && !onCloseSent) return a(form_data), region && e(region), onCloseSent = !0, "Возможно некоторые данные не сохранятся."
+    })
+
+
+    //ANKETA OPEN
+    $(".cta_new").magnificPopup({
+        type: "inline",
+        closeBtnInside: "true",
+        removalDelay: 300,
+        callbacks: {
+            beforeOpen: function() {
+                var a = $.magnificPopup.instance.st.el[0].hash;
+                a = $(a), a.addClass("fadeIn")
+            },
+            beforeClose: function() {
+                var a = $.magnificPopup.instance.st.el[0].hash;
+                a = $(a), a.removeClass("fadeIn"), a.addClass("fadeOut")
+            },
+            afterClose: function() {
+                var a = $.magnificPopup.instance.st.el[0].hash;
+                a = $(a), $(".invalid_text").fadeOut(), $(".invalid").removeClass("invalid")
+            }
+        }
+    });
+
+    //VALIDATE FORM
+    $(".form_wrap_inner").on("focus", "input", function() {
+        $(this).siblings('span:not(".static")').addClass("active")
+    }), $('.form_wrap_inner:not(".static")').on("blur", "input", function() {
+        (!$(this).val() || "__.__.____" == $(this).val() || $(this).hasClass("dateBirth") && $(this).val().indexOf("_") != -1) && $(this).siblings('span:not(".static")').removeClass("active")
+    }), $(".input").on("click", function() {
+        $(this).children("input").focus()
+    }), $(".select_region").select2({
+        placeholder: "Регион",
+        minimumResultsForSearch: 1 / 0
+    }), $(".form input").on("focus", function() {
+        var a = $(this).parent(".input");
+        a.hasClass("invalid") && a.removeClass("invalid"), $(".invalid_text").fadeOut()
+    }), $(".select2").on("click", function() {
+        $(this).hasClass("invalid") && ($(this).removeClass("invalid"), $(".invalid_text").fadeOut())
+    }), $(".summ_money, .income").keydown(function(a) {
+        $.inArray(a.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 || 65 === a.keyCode && (a.ctrlKey === !0 || a.metaKey === !0) || a.keyCode >= 35 && a.keyCode <= 40 || (a.shiftKey || a.keyCode < 48 || a.keyCode > 57) && (a.keyCode < 96 || a.keyCode > 105) && a.preventDefault()
+    }), jQuery(".dateBirth").mask("99.99.9999"), jQuery("form .phone").mask("8 (999) 999-9999"),
+
+
+        //SUBMIT TRIGGER
+        $(".submit").on("click", function() {
+            return $(this).parents("form").submit(), !1
+        }), $(".form .input .placeholder").on("click", function() {
+        $(this).siblings("input").focus()
+    }),
+
+        //SUBMIT FORM
+        $(".new_form").on("submit", function(a) {
+            a.preventDefault();
+            var h = $(this).children(".cta");
+            if (!h.hasClass("loading")) {
+                var i = !1;
+
+                if ($(this).find("[data-require]").each(function(a) {
+                        $(this).val() || ("SELECT" == $(this).prop("tagName") ? $(".select2").addClass("invalid") : $(this).parent(".input").addClass("invalid"), $(".invalid_text").fadeIn(), i = !0);
+                    }), i) return !1;
+                h.addClass("loading"); h.text("Ваша заявка отправляется...");
+
+                summ = $(this).find(".summ_money").val(), income = $(this).find(".income").val(), dateBirth = $(this).find(".dateBirth").val(), region = $(this).find(".select_region").val(), phone = $(this).find(".phone").val(), form_data = $(this).serialize();
+                var j = dateBirth.split("."),
+                    k = (c(j[1], j[0], j[2]), window.location.origin);
+                if ($(this).hasClass("small")) $.ajax({
+                    type: "POST",
+                    url: k + "/like_filkos/send_form.php",
+                    data: form_data
+                }).done(function(a) {
+                    a.indexOf("специалисты") != -1 && (console.log("sent"), e(region), f("ANKETA")), b(a), $("form")[0].reset(), $(".loading").removeClass("loading"), $(".small .cta").text("Получить кредит")
+                })
+                else {
+                    $(".loading").removeClass("loading"); $("#step1 .cta").text("Получить кредит");
+                    var l = $("#step2");
+                    $.magnificPopup.instance.st.callbacks = {
+                        close: function() {
+                            console.log("step2sent " + step2Sent); !form_data.length || step1Sent || step2Sent || step3Sent || ($.ajax({
+                                type: "POST",
+                                url: k + "/like_filkos/send_form.php",
+                                data: form_data
+                            }).done(function(a) {
+                                a.indexOf("специалисты") != -1 && (console.log("sent"), e(region), f("ANKETA"))
+                            }), step1Sent || d("шаг 1"), step1Sent = !0)
+                        }
+                    };
+
+                    $.magnificPopup.open({
+                        items: {
+                            src: l,
+                            type: "inline"
+                        },
+                        closeBtnInside: "true",
+                        removalDelay: 300
+                    })
+                }
+            }
+        })
+
+
+
+
+
+})();
